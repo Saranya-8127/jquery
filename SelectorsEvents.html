@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>selectors</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- including cdn to access jquery -->
+</head>
+<body>
+    <h1>heading</h1>
+    <p>para 1</p>
+    <p>para 2</p>
+    <button class="hide">click this to hide the whole with * selector</button>
+    <button class="this">this selector</button>
+    <p class="para">paragraph with class.</p>
+    <button class="parahide">use this to hide p element with class para-mouseenter</button>
+    <button class="first">hide the first element with first selector-dblclick</button>
+    <p class="event">para to test mouse leave event</p>
+    <p id="on">onclick para</p>
+    <p class="compare">this compares mouseenter(grey), mouseleave(blue) and onclick(yellow)</p>
+<!-- onMouseDown will trigger when either the left or right (or middle) is pressed. Similarly, onMouseUp will trigger when any button is released. onMouseDown will trigger even when the mouse is clicked on the object then moved off of it, while onMouseUp will trigger if you click and hold the button elsewhere, then release it above the object.
+
+onClick will only trigger when the left mouse button is pressed and released on the same object. In case you care about order, if the same object has all 3 events set, it's onMouseDown, onMouseUp, then onClick. Each even should only trigger once though. -->
+    Name: <input type="text" name="fullname"><br>
+Email: <input type="text" name="email">
+    <script>
+        // starting tag of jquery
+        $(document).ready(function(){
+            // accessing the button with id selector to select all elements and using a hide function to hide them
+            $(".hide").click(function(){
+                $("*").hide();
+            });
+            $(".this").click(function(){
+                $(this).hide();
+            });
+            $(".parahide").mouseenter(function(){
+                $("p.para").hide();
+            });
+            $(".first").dblclick(function(){
+                // function will work after double click
+                $("p:first").hide();
+            });
+            $(".event").mouseleave(function(){
+                // function to use mouse leave
+                alert("you have rudely exited the paragraph, you are rude");      
+            });
+            
+            $("input").focus(function(){
+                $(this).css("background-color", "yellow");
+                // gets focus
+            });
+            $("input").blur(function(){
+                $(this).css("background-color", "green");
+                // looses focus
+            });
+            $("#on").on("click", function(){
+                $(this).hide();
+            });
+
+            $(".compare").on({
+                mouseenter: function(){
+                $(this).css("background-color", "lightgray");
+                },  
+                mouseleave: function(){
+                $(this).css("background-color", "lightblue");
+                }, 
+                click: function(){
+                $(this).css("background-color", "yellow");
+                }  
+            });
+        });
+    </script>
+    
+</body>
+</html>

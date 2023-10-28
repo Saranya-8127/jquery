@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          });
+        });
+      });
+    </script>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Filterable Table</h2>
+    <p>
+      Type something in the input field to search the table for first names,
+      last names or emails:
+    </p>
+    <input id="myInput" type="text" placeholder="Search.." />
+    <br /><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@mail.com</td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@greatstuff.com</td>
+        </tr>
+        <tr>
+          <td>Anja</td>
+          <td>Ravendale</td>
+          <td>a_r@test.com</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Note that we start the search in tbody, to prevent filtering the table
+      headers.
+    </p>
+  </body>
+  <!--
+
+It seems like you want to implement a live search functionality that filters rows in an HTML table based on user input. The code you provided does precisely that. Here's a breakdown of how it works:
+1. `$(document).ready(function () { ... });`: This code ensures that the enclosed JavaScript function runs after the HTML document has fully loaded.
+2. `$("#myInput").on("keyup", function () { ... });`: This code sets up an event listener for the `keyup` event on an input element with the id `myInput`. This means that the following function will be executed every time a key is released in that input field.
+3. `var value = $(this).val().toLowerCase();`: Inside the event listener function, this line gets the current value entered in the input field (`#myInput`) and converts it to lowercase. This is done to ensure case-insensitive searching.
+4. `$("#myTable tr").filter(function () { ... });`: This line selects all the rows (`<tr>`) within a table with the id `myTable` and applies a filter function to them.
+5. `$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);`: Within the filter function, this line checks each row's text content (case-insensitive) to see if it contains the `value` entered in the input field. If the text content includes the value, the row is kept visible (`$(this).toggle(true)`); otherwise, it's hidden (`$(this).toggle(false)`).
+So, when a user types into the input field with the id `myInput`, the code dynamically filters the rows of the table (`#myTable`) to display only those rows that contain the entered text. This provides a live search feature for the table, making it easy for users to find specific information within the table as they type. -->
+</html>
+<!-- if you wanted to know about $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1) line, then you have to understand from the below section with some steps, then maybe it will be much clear to you. ( sorry to take long description)
+
+Step 1:
+
+ $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+Here
+
+$("#myTable tr").filter(function() {
+...
+});
+is checking every each row of #myTable table.
+
+Step 2:
+
+$(this).text().toLowerCase() is every time collecting all columns data from a row as lower case a large string.
+
+Example: You can find out using the below code
+
+$(document).ready(function() {
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      alert($(this).text().toLowerCase());
+    });
+  });
+});
+Step 3:
+
+indexOf(value) is a method to search the position of the given value from a string.
+
+Example:
+
+var str = "Hello world, welcome to the universe.";
+var n = str.indexOf("welcome");
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_indexof
+
+So whatever you search into #myInput , its searches his position from $(this).text().toLowerCase() lower case large string using $(this).text().toLowerCase().indexOf(value) and returns the actual location or if he could not matched or find out then returns -1 . Which is checking into below line
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+Step 4:
+
+Finally $(this).toggle is called on the condition indexOf(value) > -1, so the rows in the table will be hidden if they do not match with the user's searchable input.
+
+Some use full links :
+
+indexOf: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_indexof
+
+toggle: https://www.w3schools.com/jquery/eff_toggle.asp -->

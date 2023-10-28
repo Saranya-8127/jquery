@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic jquery program</title>
+    <!-- including jquery from cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- using different tags -->
+    <h1>heading</h1>
+    <p>paragraph</p>
+    <button id="btn">button</button>
+    <div>div element</div>
+    <div class="ex">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis unde sequi iure cupiditate iste, dolorum optio eum aperiam illum ipsum vitae quod repellat, placeat, non molestiae nostrum voluptatem! Excepturi, nobis.</div>
+    <div id="eg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, dignissimos veritatis. Corrupti labore earum ut! Nemo ipsum vero alias! Hic praesentium iure nam eveniet eum autem minima impedit explicabo quod?</div>
+    <p class="hidden">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt, ex. Explicabo quibusdam, est quia libero ratione distinctio ducimus dolores aliquam asperiores tenetur dolor sunt porro quos, similique nulla ut perferendis!</p>
+    <button class="hide">button to hide</button>
+    <!-- including script, to use jquery to manipulate the above tag elements -->
+    <script>
+        // $ sign indicates jquery
+         $(document).ready(function(){ 
+            // This is to prevent any jQuery code from running before the document is finished loading (is ready).
+            $("p").text("modified paragraph element tag");
+            $("h1").text("modified h1 element tag");
+            $("button").text("modified button element");
+            // $("div").text("modified element div");
+            // modifing text of the elements
+            $(".ex").css("color","blue");
+            $("#eg").hide();
+            // changing visibility and css of elements
+            $("#btn").click(function(){
+                alert("button clicked");
+                // adding an alert with jquery
+            });
+            $("button").css("background-color","pink");
+            // changing background clr of the button
+            $("div").append("<p>THIS PARA IS ADDED BY JQUERY</P>");
+                // a new paragraph is added to each of the div element
+            $("h1").remove();
+            // removes an element, here the header element
+            $.get("https://jsonplaceholder.typicode.com/posts/1",function(data){
+                console.log(data);
+                console.log("data from the server");
+            });
+            $(".hide").click(function(){
+                $(".hidden").hide();
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

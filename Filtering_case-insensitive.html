@@ -1,0 +1,83 @@
+<!-- case-insenitive search for text inside a div element -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#inp").on("keyup", function(){
+                var value= $(this).val().toLowerCase();
+                $("#element *").filter(function(){
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Filter anything</h2>
+    <p>type something in the field to seach for a specific text inside the div element</p>
+    <input id="inp" type="text" placeholder="search">
+    <div id="element">
+        <p>paragraph</p>
+        <div>div inside div</div>
+        <button>button 1</button>
+        <button>button 2</button>
+        <p>paragraph</p>
+    </div>
+</body>
+</html>
+<!-- in this function, several text is placed on the html page, when something from that element is searched in the placeholder, except that elemet, the rest are toggled up. -->
+<!-- if you wanted to know about $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1) line, then you have to understand from the below section with some steps, then maybe it will be much clear to you. ( sorry to take long description)
+
+Step 1:
+
+ $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+Here
+
+$("#myTable tr").filter(function() {
+...
+});
+is checking every each row of #myTable table.
+
+Step 2:
+
+$(this).text().toLowerCase() is every time collecting all columns data from a row as lower case a large string.
+
+Example: You can find out using the below code
+
+$(document).ready(function() {
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      alert($(this).text().toLowerCase());
+    });
+  });
+});
+Step 3:
+
+indexOf(value) is a method to search the position of the given value from a string.
+
+Example:
+
+var str = "Hello world, welcome to the universe.";
+var n = str.indexOf("welcome");
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_indexof
+
+So whatever you search into #myInput , its searches his position from $(this).text().toLowerCase() lower case large string using $(this).text().toLowerCase().indexOf(value) and returns the actual location or if he could not matched or find out then returns -1 . Which is checking into below line
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+Step 4:
+
+Finally $(this).toggle is called on the condition indexOf(value) > -1, so the rows in the table will be hidden if they do not match with the user's searchable input.
+
+Some use full links :
+
+indexOf: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_indexof
+
+toggle: https://www.w3schools.com/jquery/eff_toggle.asp -->

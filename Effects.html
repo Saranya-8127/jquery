@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .ex,.eg,.el,.Togglediv{
+            background-color: #e5eecc;
+            padding:7px;
+            border:solid 1px #c3c3c3;
+        }
+        #panel, #flip,#panel1, #flip1 {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+
+#panel {
+  padding: 50px;
+  display: none;
+}
+#panel1 {
+  padding: 50px;
+}
+#panel2, #flip2 {
+  padding: 5px;
+  text-align: center;
+  background-color: #97f78f;
+  border: solid 1px #bef897;
+}
+
+#panel2 {
+  padding: 50px;
+  display: none;
+}
+    </style>
+</head>
+<body>
+    <div class="ex">
+        <h3>Island Training <b>slow</b></h3>
+        <p>Contact:Elena Belenova<br>
+        Great britain bridge<br>
+    Britain</p>
+    </div>
+    <button class="hide">hide</button>
+    <button class="show">show</button>
+    <div class="eg">
+        <h3>Island Training <b>normal</b></h3>
+        <p>Contact:Elena Belenova<br>
+        Great britain bridge<br>
+    Britain</p>
+    </div>
+    <button class="hidden">hide</button>
+    <button class="shown">show</button>
+    <div class="el">
+        <h3>Island Training <b>speed</b> <b>normal</b></h3>
+        <p>Contact:Elena Belenova<br>
+        Great britain bridge<br>
+    Britain</p>
+    </div>
+    <button class="hideel">hide</button>
+    <div class="Togglediv">
+        <h3>Island Training <b>toggle</b> <b>normal</b></h3>
+        <p>Contact:Elena Belenova<br>
+        Great britain bridge<br>
+    Britain</p>
+    </div>
+    <button class="Togglable">toggle</button>
+    <button class="fadebox">Click to fade in boxes</button><br><br>
+    <div id="div1" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+    <div id="div2" style="width:80px;height:80px;display:none;background-color:green;"></div><br>
+    <div id="div3" style="width:80px;height:80px;display:none;background-color:blue;"></div>
+    <button class="fadeout">Click to fade out boxes</button><br><br>
+    <button class="toggle">Click to fade in/out boxes</button><br><br>
+    <button class="fade">Click to fade boxes</button><br><br>
+    <hr>
+    <div id="flip">Click to slide down panel</div>
+    <div id="panel">Hello world!</div>
+    <div id="flip1">Click to slide up panel</div>
+    <div id="panel1">Hello world!</div>
+    <div id="flip2">Click to slide the panel down or up</div>
+<div id="panel2">Hello world!</div>
+<button class="ani">Start Animation</button>
+<div class="block" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<button class="ani2">toggle Animation</button>
+<div class="block2" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<button class="ani3">Start Animation</button>
+<div class="block3" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<hr>
+<button class="ani3">Start Animation</button>
+<div class="block3" style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<hr>
+<button class="ani4">Start Animation</button>
+<div class="block4" style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
+
+    <script>
+        $(document).ready(function(){
+            $(".hide").click(function(){
+                $(".ex").hide("slow");
+            });
+            $(".show").click(function(){
+                $(".ex").show("slow");
+            });
+            $(".hidden").click(function(){
+                $(".eg").hide();
+            });
+            $(".shown").click(function(){
+                $(".eg").show();
+            });
+            $(".hideel").click(function(){
+                $(".el").hide(5000);
+            });
+            $(".Togglable").click(function(){
+                $(".Togglediv").toggle();
+            });
+            $(".fadebox").click(function(){
+                $("#div1").fadeIn();
+                $("#div2").fadeIn("slow");
+                $("#div3").fadeIn(3000);
+            });
+            $(".fadeout").click(function(){
+                $("#div1").fadeOut();
+                $("#div2").fadeOut("slow");
+                $("#div3").fadeOut(3000);
+            });
+            $(".toggle").click(function(){
+                $("#div1").fadeToggle();
+                $("#div2").fadeToggle("slow");
+                $("#div3").fadeToggle(3000);
+            });
+
+            $(".fade").click(function(){
+                $("#div1").fadeTo("slow", 0.15);
+                $("#div2").fadeTo("slow", 0.4);
+                $("#div3").fadeTo("slow", 0.7);
+            });
+            $("#flip").click(function(){
+                $("#panel").slideDown("slow");
+            });
+            $("#flip1").click(function(){
+                $("#panel1").slideUp("slow");
+            });
+            $("#flip2").click(function(){
+                $("#panel2").slideToggle("slow");
+            });
+            $(".ani").click(function(){
+                $(".block").animate({left: '250px'});
+            });
+            $(".ani2").click(function(){
+                $(".block2").animate({
+                height: 'toggle'
+                });
+            });
+            $(".ani3").click(function(){
+                var div = $(".block3");
+                div.animate({height: '300px', opacity: '0.4'}, "slow");
+                div.animate({width: '300px', opacity: '0.8'}, "slow");
+                div.animate({height: '100px', opacity: '0.4'}, "slow");
+                div.animate({width: '100px', opacity: '0.8'}, "slow");
+            });
+            $(".ani3").click(function(){
+                var div = $(".block3");  
+                div.animate({left: '100px'}, "slow");
+                div.animate({fontSize: '3em'}, "slow");
+            });
+        })
+    </script>
+</body>
+</html>
